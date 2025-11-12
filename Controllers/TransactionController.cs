@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyWebApiWithControllers.Services;
 using MyWebApiWithControllers.Repository;
-using MyWebApiWithControllers.Model;
-
+using MyWebApiWithControllers.DatabaseModel;
 namespace MyWebApiWithControllers.Controllers;
 
 [ApiController]

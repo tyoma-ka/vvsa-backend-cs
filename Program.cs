@@ -1,6 +1,8 @@
 using Scalar.AspNetCore;
 using MyWebApiWithControllers.Services;
 using MyWebApiWithControllers.Repository;
+using MyWebApiWithControllers.DatabaseModel;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
+
+// Register DbContext
+builder.Services.AddDbContext<Whiyes5oContext>();
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
