@@ -16,13 +16,13 @@ public class TransactionController : ControllerBase
     }
 
     [HttpGet(Name = "GetAllTransactions")]
-    public List<Transaction> GetAllTransactions()
+    public List<TransactionViewModel> GetAllTransactions()
     {
         return _transactionService.GetAllTransactions();
     }
 
     [HttpGet("{id}", Name = "GetTransactionById")]
-    public Transaction GetTransactionById(int id)
+    public TransactionViewModel GetTransactionById(int id)
     {
         return _transactionService.GetTransactionById(id);
     }
