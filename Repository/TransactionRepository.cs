@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using MyWebApiWithControllers.DatabaseModel;
 
 namespace MyWebApiWithControllers.Repository;
@@ -16,12 +17,19 @@ public class TransactionRepository : ITransactionRepository
 
     public List<Transaction> GetAllTransactions()
     {
-        return context.Transactions.ToList();
+        return context.Transactions.
+        Include(t => t.User).
+        Include(t => t.TransactionType)
+        .ToList();
     }
 
     public Transaction GetTransactionById(int id)
     {
-        return context.Transactions.FirstOrDefault(t => t.Id == id);
+        var result = this.context.Transactions
+        .Include(t => t.User)
+        .Include(t => t.TransactionType)
+        .FirstOrDefault(t => t.Id == id);
+        return result;
     }
 
     public void Add(Transaction transaction)
