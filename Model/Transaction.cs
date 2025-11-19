@@ -12,13 +12,13 @@ public class Transaction
 {
     public decimal TransactionId { get; set; }
 
-    public string FullName { get; set; }
+    public required string FullName { get; set; }
 
     public TransactionType TransactionType { get; set; }
 
-    public string AccountNumber { get; set; }
+    public required string AccountNumber { get; set; }
 
-    public string BankCode { get; set; }
+    public required string BankCode { get; set; }
 
     public DateTime IssueDate { get; set; }
 

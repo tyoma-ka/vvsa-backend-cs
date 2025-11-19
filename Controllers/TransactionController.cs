@@ -22,8 +22,13 @@ public class TransactionController : ControllerBase
     }
 
     [HttpGet("{id}", Name = "GetTransactionById")]
-    public TransactionViewModel GetTransactionById(int id)
+    public ActionResult<TransactionViewModel> GetTransactionById(int id)
     {
-        return _transactionService.GetTransactionById(id);
+        var result = _transactionService.GetTransactionById(id);
+        if (result == null)
+        {
+            return NotFound();
+        }
+        return result;
     }
 }

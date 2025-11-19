@@ -23,7 +23,7 @@ public class TransactionRepository : ITransactionRepository
         .ToList();
     }
 
-    public Transaction GetTransactionById(int id)
+    public Transaction? GetTransactionById(int id)
     {
         var result = this.context.Transactions
         .Include(t => t.User)

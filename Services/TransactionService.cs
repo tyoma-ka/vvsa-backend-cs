@@ -23,23 +23,32 @@ public class TransactionService : ITransactionService {
                 Amount = transaction.Amount,
                 IssueDate = transaction.IssueDate,
                 FullName = transaction.User.Name,
-                TransactionType = transaction.TransactionType.Name
+                TransactionType = transaction.TransactionType.Name,
+                AccountNumber = transaction.AccountNumber,
+                BankCode = transaction.BankCode
             };
             TransactionViewModels.Add(transactionViewModel);
         }
         return TransactionViewModels;
     }
     
-    public TransactionViewModel GetTransactionById(int id) 
+    public TransactionViewModel? GetTransactionById(int id)
     {
         var transaction = _transactionRepository.GetTransactionById(id);
+        if (transaction == null)
+        {
+            return null;
+        }
+
         var transactionViewModel = new TransactionViewModel
             {
                 TransactionId = transaction.Id,
                 Amount = transaction.Amount,
                 IssueDate = transaction.IssueDate,
                 FullName = transaction.User.Name,
-                TransactionType = transaction.TransactionType.Name
+                TransactionType = transaction.TransactionType.Name,
+                AccountNumber = transaction.AccountNumber,
+                BankCode = transaction.BankCode
             };
             return transactionViewModel;
     }

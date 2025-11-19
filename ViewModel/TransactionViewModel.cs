@@ -3,11 +3,11 @@ using MyWebApiWithControllers.DatabaseModel;
 public class TransactionViewModel
 {
     public decimal TransactionId { get; set; }
-    public string FullName { get; set; }    
-    public string TransactionType { get; set; }
-     public string AccountNumber { get; set; } = null!;
+    public required string FullName { get; set; }    
+    public required string TransactionType { get; set; }
+     public required string AccountNumber { get; set; }
 
-    public string BankCode { get; set; } = null!;
+    public required string BankCode { get; set; }
 
     public DateTime IssueDate { get; set; }
 
