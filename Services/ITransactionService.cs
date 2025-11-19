@@ -4,6 +4,6 @@ namespace MyWebApiWithControllers.Services;
 
 public interface ITransactionService
 {
-    List<Transaction> GetAllTransactions();
-    Transaction GetTransactionById(int id);
+    List<TransactionViewModel> GetAllTransactions();
+    TransactionViewModel? GetTransactionById(int id);
 }

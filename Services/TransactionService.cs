@@ -11,13 +11,45 @@ public class TransactionService : ITransactionService {
         _transactionRepository = transactionRepository;
     }
 
-    public List<Transaction> GetAllTransactions() 
+    public List<TransactionViewModel> GetAllTransactions()
     {
-        return _transactionRepository.GetAllTransactions();
+        var TransactionViewModels = new List<TransactionViewModel>();
+        var transactions = _transactionRepository.GetAllTransactions();
+        foreach (var transaction in transactions)
+        {
+            var transactionViewModel = new TransactionViewModel
+            {
+                TransactionId = transaction.Id,
+                Amount = transaction.Amount,
+                IssueDate = transaction.IssueDate,
+                FullName = transaction.User.Name,
+                TransactionType = transaction.TransactionType.Name,
+                AccountNumber = transaction.AccountNumber,
+                BankCode = transaction.BankCode
+            };
+            TransactionViewModels.Add(transactionViewModel);
+        }
+        return TransactionViewModels;
     }
     
-    public Transaction GetTransactionById(int id) 
+    public TransactionViewModel? GetTransactionById(int id)
     {
-        return _transactionRepository.GetTransactionById(id);
+        var transaction = _transactionRepository.GetTransactionById(id);
+        if (transaction == null)
+        {
+            return null;
+        }
+
+        var transactionViewModel = new TransactionViewModel
+            {
+                TransactionId = transaction.Id,
+                Amount = transaction.Amount,
+                IssueDate = transaction.IssueDate,
+                FullName = transaction.User.Name,
+                TransactionType = transaction.TransactionType.Name,
+                AccountNumber = transaction.AccountNumber,
+                BankCode = transaction.BankCode
+            };
+            return transactionViewModel;
     }
 }

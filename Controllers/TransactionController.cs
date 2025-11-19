@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MyWebApiWithControllers.Services;
 using MyWebApiWithControllers.Repository;
-using MyWebApiWithControllers.Model;
-
+using MyWebApiWithControllers.DatabaseModel;
 namespace MyWebApiWithControllers.Controllers;
 
 [ApiController]
@@ -17,14 +16,19 @@ public class TransactionController : ControllerBase
     }
 
     [HttpGet(Name = "GetAllTransactions")]
-    public List<Transaction> GetAllTransactions()
+    public List<TransactionViewModel> GetAllTransactions()
     {
         return _transactionService.GetAllTransactions();
     }
 
     [HttpGet("{id}", Name = "GetTransactionById")]
-    public Transaction GetTransactionById(int id)
+    public ActionResult<TransactionViewModel> GetTransactionById(int id)
     {
-        return _transactionService.GetTransactionById(id);
+        var result = _transactionService.GetTransactionById(id);
+        if (result == null)
+        {
+            return NotFound();
+        }
+        return result;
     }
 }
